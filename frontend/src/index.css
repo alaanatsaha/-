@@ -1,0 +1,72 @@
+@font-face {
+  font-family: "PIBFontRG";
+  src: url("/fonts/pibfontrg.woff2") format("woff2");
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "PIBFontRG", Arial, Tahoma, sans-serif;
+  background-color: #f7f8f9;
+  color: #18324a;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+/* Visible keyboard focus everywhere, on top of Tailwind's own focus utilities */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #075b91;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media print {
+  body {
+    background: #ffffff !important;
+  }
+
+  header {
+    border-bottom: 3px solid #f4c400 !important;
+    box-shadow: none !important;
+  }
+
+  header .no-print,
+  .no-print {
+    display: none !important;
+  }
+
+  main {
+    max-width: none !important;
+    padding: 0 1.5cm !important;
+  }
+
+  .bg-gradient-to-br {
+    background: #003b70 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}

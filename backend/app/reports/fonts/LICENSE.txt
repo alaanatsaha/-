@@ -1,0 +1,11 @@
+FreeSerif.ttf and FreeSerifBold.ttf are part of the GNU FreeFont project
+(https://www.gnu.org/software/freefont/), included here because they have
+full Arabic presentation-form glyph coverage, which reportlab needs to
+render shaped Arabic text in the generated PDF report.
+
+Licensed under the GNU General Public License v3 (or later) with the font
+embedding exception, which explicitly permits embedding/subsetting these
+fonts in documents (such as the PDFs this project generates) without that
+document itself becoming subject to the GPL. Full license text:
+https://www.gnu.org/licenses/gpl-3.0.html and the font-specific exception
+notice distributed with GNU FreeFont.
