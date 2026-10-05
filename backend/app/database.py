@@ -13,9 +13,13 @@ from .config import settings
 
 # `check_same_thread` is only needed for SQLite (FastAPI handles requests
 # on different threads); it's ignored by other database backends.
-connect_args = {"check_same_thread": False} if settings.database_url.startswith("sqlite") else {}
+database_url = settings.database_url
+if database_url.startswith("postgres://"):
+    database_url = "postgresql://" + database_url.removeprefix("postgres://")
 
-engine = create_engine(settings.database_url, connect_args=connect_args)
+connect_args = {"check_same_thread": False} if database_url.startswith("sqlite") else {}
+
+engine = create_engine(database_url, connect_args=connect_args)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 Base = declarative_base()

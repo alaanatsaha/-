@@ -1,7 +1,12 @@
 // Central place for every call to the FastAPI backend.
 // Override the backend URL at build time with VITE_API_BASE_URL if the
 // API isn't on localhost:8000 (see frontend/.env.example).
-const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:8000";
+const configuredApiBase = import.meta.env.VITE_API_BASE_URL;
+const API_BASE = configuredApiBase
+  ? configuredApiBase.includes("://")
+    ? configuredApiBase
+    : `https://${configuredApiBase}`
+  : "http://127.0.0.1:8000";
 
 class ApiError extends Error {
   constructor(message, status) {

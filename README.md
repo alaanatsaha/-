@@ -169,17 +169,17 @@ GET /api/assessments/{id}/report.pdf
 
 ## النشر المجاني التجريبي
 
-يوجد ملف `render.yaml` ينشر الواجهة والـ API على Render. قبل النشر:
+ينشئ ملف `render.yaml` واجهة ثابتة وواجهة API وقاعدة PostgreSQL، ويربطها تلقائيًا
+بعناوين `onrender.com` المحددة في الملف. للنشر:
 
-1. أنشئ قاعدة PostgreSQL على Neon، وانسخ رابط الاتصال مع `sslmode=require`.
-2. ارفع المشروع إلى GitHub كمستودع خاص، ولا ترفع أي ملف `.env` أو قاعدة بيانات.
-3. في Render اختر **New > Blueprint** واربط مستودع GitHub؛ سيقرأ `render.yaml` تلقائيًا.
-4. عيّن متغيرات الـ API:
-  - `DATABASE_URL`: رابط Neon.
-  - `CORS_ORIGINS`: رابط الواجهة المنشور، مثل `https://pib-credit-assessment-web.onrender.com`.
-  - `ALLOWED_HOSTS`: نطاق الـ API، مثل `pib-credit-assessment-api.onrender.com`.
-5. في خدمة الواجهة عيّن `VITE_API_BASE_URL` إلى رابط الـ API ثم أعد النشر.
+1. ادفع التغييرات إلى مستودع GitHub المتصل.
+2. افتح [نشر المشروع على Render](https://render.com/deploy?repo=https://github.com/alaanatsaha/-)،
+   ثم سجّل الدخول وامنح Render صلاحية المستودع.
+3. راجع الموارد التي سيُنشئها Render، ثم اختر **Apply** لبدء النشر.
 
-الخطة المجانية مناسبة للتجربة وقد تدخل في السكون. قاعدة البيانات يجب أن تكون PostgreSQL؛
-لا تعتمد على SQLite أو ملف Excel المحلي كنسخة أساسية في السحابة. قاعدة البيانات هي المصدر
+بعد اكتمال النشر، رابط الواجهة هو
+`https://pib-credit-assessment-web.onrender.com` ورابط الـ API هو
+`https://pib-credit-assessment-api.onrender.com`. الخطة المجانية مناسبة للتجربة؛
+قد تدخل الخدمات في السكون، وقاعدة البيانات المجانية محدودة بعمر تخزين قصير.
+لا تستخدم النشر التجريبي لتخزين بيانات عملاء حقيقية. قاعدة البيانات هي المصدر
 الرسمي، وExcel للتصدير والمراجعة فقط.

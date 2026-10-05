@@ -25,7 +25,8 @@ class Settings(BaseSettings):
 
     @property
     def cors_origins_list(self) -> list[str]:
-        return [origin.strip() for origin in self.cors_origins.split(",") if origin.strip()]
+        origins = [origin.strip() for origin in self.cors_origins.split(",") if origin.strip()]
+        return [origin if "://" in origin else f"https://{origin}" for origin in origins]
 
     @property
     def allowed_hosts_list(self) -> list[str]:
